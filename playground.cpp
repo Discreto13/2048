@@ -75,18 +75,6 @@ bool playground::generate()
 	return 1;
 }
 
-void playground::display()
-{
-	for (int i = 0; i < itsSize; i++)
-	{
-		for (int j = 0; j < itsSize; j++)
-		{
-			cout << itsArray[i][j] << "\t";
-		}
-		cout << endl;
-	}
-}
-
 bool playground::moveUp()
 {
 	bool arrayMoved = false;//array is moved

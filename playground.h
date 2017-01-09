@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include <ctime>
 using namespace std;
@@ -12,7 +11,7 @@ public:
 	void initialization();
 	class coordinates;
 	bool generate();
-	void display();
+	friend void display(const playground &);
 	bool moveUp();
 	
 private:
