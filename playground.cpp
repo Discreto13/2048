@@ -89,10 +89,131 @@ bool playground::moveUp()
 				//if "down-element" != 0, then
 				if (itsArray[k][j] != 0)
 				{
-					if (itsArray[i][j] == 0 || itsArray[i][j] == itsArray[k][j])
+					if (itsArray[i][j] == 0)
+					{
+						itsArray[i][j] = itsArray[k][j];
+						itsArray[k][j] = 0;
+						arrayMoved = true;
+						continue;
+					}
+					else if (itsArray[i][j] == itsArray[k][j])
 					{
 						itsArray[i][j] += itsArray[k][j];
 						itsArray[k][j] = 0;
+						arrayMoved = true;
+					}
+					break;
+				}
+			}
+		}
+	}
+	return arrayMoved;
+	//itsArray[i][j] - current element
+	//itsArray[k][j] - current down-element form main-element
+}
+
+bool playground::moveDown()
+{
+	bool arrayMoved = false;//array is moved
+	//check all elements
+	for (int i = itsSize - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < itsSize; j++)
+		{
+			//move to down from element
+			for (int k = i - 1; k >= 0; k--)
+			{
+				//if "down-element" != 0, then
+				if (itsArray[k][j] != 0)
+				{
+					if (itsArray[k][j] != 0)
+					{
+						if (itsArray[i][j] == 0)
+						{
+							itsArray[i][j] = itsArray[k][j];
+							itsArray[k][j] = 0;
+							arrayMoved = true;
+							continue;
+						}
+						else if (itsArray[i][j] == itsArray[k][j])
+						{
+							itsArray[i][j] += itsArray[k][j];
+							itsArray[k][j] = 0;
+							arrayMoved = true;
+						}
+						break;
+					}
+				}
+			}
+		}
+	}
+	return arrayMoved;
+	//itsArray[i][j] - current element
+	//itsArray[k][j] - current down-element form main-element
+}
+
+bool playground::moveLeft()
+{
+	bool arrayMoved = false;//array is moved
+							//check all elements
+	for (int i = 0; i < itsSize; i++)
+	{
+		for (int j = 0; j < itsSize; j++)
+		{
+			//move to down from element
+			for (int k = j + 1; k < itsSize; k++)
+			{
+				//if "down-element" != 0, then
+				if (itsArray[i][k] != 0)
+				{
+					if (itsArray[i][j] == 0)
+					{
+						itsArray[i][j] = itsArray[i][k];
+						itsArray[i][k] = 0;
+						arrayMoved = true;
+						continue;
+					}
+					else if (itsArray[i][j] == itsArray[i][k])
+					{
+						itsArray[i][j] += itsArray[i][k];
+						itsArray[i][k] = 0;
+						arrayMoved = true;
+					}
+					break;
+				}
+			}
+		}
+	}
+	return arrayMoved;
+	//itsArray[i][j] - current element
+	//itsArray[k][j] - current down-element form main-element
+}
+
+bool playground::moveRight()//not ready!
+{
+	bool arrayMoved = false;//array is moved
+							//check all elements
+	for (int i = 0; i < itsSize; i++)
+	{
+		for (int j = itsSize - 1; j >= 0; j--)
+		{
+			//move to down from element
+			for (int k = j - 1; k >= 0; k--)
+			{
+				//if "down-element" != 0, then
+				if (itsArray[i][k] != 0)
+				{
+					if (itsArray[i][j] == 0)
+					{
+						itsArray[i][j] = itsArray[i][k];
+						itsArray[i][k] = 0;
+						arrayMoved = true;
+						continue;
+					}
+					else if (itsArray[i][j] == itsArray[i][k])
+					{
+						itsArray[i][j] += itsArray[i][k];
+						itsArray[i][k] = 0;
 						arrayMoved = true;
 					}
 					break;
