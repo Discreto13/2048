@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <conio.h>
 #include "playground.h"
 using namespace std;
 
@@ -16,31 +15,33 @@ void display(const playground & PG)
 	}
 }
 
-int main(char argc, char* argv[])
+int main(int argc, char* argv[])
 {
 	//cout << "Game 2048" << endl;
+	system("clear");
 	playground PG(4);
 	PG.initialization();
 	PG.generate();
 	display(PG);
 	string message;
 	bool(playground::*move)() = 0;
+	char choice = 0;
 	while (true)
 	{
 		message.clear();
-		_getch();
-		switch (_getch())
+		cin >> choice;
+		switch (choice)
 		{
-		case 72://up
+		case 'u'://up
 			move = &playground::moveUp;
 			break;
-		case 80://down
+		case 'd'://down
 			move = &playground::moveDown;
 			break;
-		case 75://left
+		case 'l'://left
 			move = &playground::moveLeft;
 			break;
-		case 77://right
+		case 'r'://right
 			move = &playground::moveRight;
 			break;
 		default:
@@ -50,9 +51,10 @@ int main(char argc, char* argv[])
 		if (!move) { continue; }
 		if (!(PG.*move)()) { message += "Array not moved!\n"; }
 		else if (!PG.generate()) { message += "Array is fill!\n"; }
-		system("cls");
+		system("clear");
 		display(PG);
 		cout << message;
 	}
 	cin.ignore();
+	return 0;
 }
