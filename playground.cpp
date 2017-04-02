@@ -10,6 +10,18 @@ playground::playground(unsigned short int size):
 	}
 }
 
+playground::playground(const playground & temp):
+	itsSize(temp.itsSize)
+{
+	itsArray = new unsigned int * [itsSize];
+	for (int i = 0; i < itsSize; i++)
+		itsArray[i] = new unsigned int[itsSize];
+
+	for (int i = 0; i < itsSize; i++)
+		for (int j = 0; j < itsSize; j++)
+			itsArray[i][j] = temp.itsArray[i][j];
+}
+
 playground::~playground()
 {
 	for (int i = 0; i < itsSize; i++)
@@ -98,7 +110,7 @@ bool playground::moveUp()
 					}
 					else if (itsArray[i][j] == itsArray[k][j])
 					{
-						itsArray[i][j] += itsArray[k][j];
+						itsArray[i][j] += itsArray[k][j];//score = itsArray[i][j] += itsArray[k][j];//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 						itsArray[k][j] = 0;
 						arrayMoved = true;
 					}
@@ -224,4 +236,11 @@ bool playground::moveRight()//not ready!
 	return arrayMoved;
 	//itsArray[i][j] - current element
 	//itsArray[k][j] - current down-element form main-element
+}
+
+bool playground::gameOver()
+{
+	playground temp(*this);
+	if (!temp.moveUp() && !temp.moveDown() && !temp.moveLeft() && !temp.moveRight())	return true;
+	else																				return false;
 }

@@ -7,6 +7,7 @@ class playground
 {
 public:
 	playground(unsigned short int);
+	playground(const playground &);
 	~playground();
 	void initialization();
 	class coordinates;
@@ -16,8 +17,9 @@ public:
 	bool moveDown();
 	bool moveLeft();
 	bool moveRight();
-	
+	bool gameOver();//+ chack gameover
 private:
 	unsigned short int itsSize;
 	unsigned int ** itsArray;
+	//int score;
 };
