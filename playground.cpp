@@ -31,10 +31,12 @@ playground::~playground()
 	delete[] itsArray;
 }
 
-void playground::initialization()//every element in array is 0
+bool playground::initialization()//every element in array is 0
 {
-	//!!!можно добавить исключение на случай, если массив не создан!!!
+	if (itsArray == 0)
+		return false;
 	srand(time(NULL));
+	score = 0;
 	for (int  i = 0; i < itsSize; i++)
 	{
 		for (int j = 0; j < itsSize; j++)
@@ -42,6 +44,7 @@ void playground::initialization()//every element in array is 0
 			itsArray[i][j] = 0;
 		}
 	}
+	return true;
 }
 
 class playground::coordinates//private class
@@ -110,7 +113,7 @@ bool playground::moveUp()
 					}
 					else if (itsArray[i][j] == itsArray[k][j])
 					{
-						itsArray[i][j] += itsArray[k][j];//score = itsArray[i][j] += itsArray[k][j];//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+						score += itsArray[i][j] += itsArray[k][j];
 						itsArray[k][j] = 0;
 						arrayMoved = true;
 					}
@@ -149,7 +152,7 @@ bool playground::moveDown()
 						}
 						else if (itsArray[i][j] == itsArray[k][j])
 						{
-							itsArray[i][j] += itsArray[k][j];
+							score += itsArray[i][j] += itsArray[k][j];
 							itsArray[k][j] = 0;
 							arrayMoved = true;
 						}
@@ -187,7 +190,7 @@ bool playground::moveLeft()
 					}
 					else if (itsArray[i][j] == itsArray[i][k])
 					{
-						itsArray[i][j] += itsArray[i][k];
+						score += itsArray[i][j] += itsArray[i][k];
 						itsArray[i][k] = 0;
 						arrayMoved = true;
 					}
@@ -224,7 +227,7 @@ bool playground::moveRight()//not ready!
 					}
 					else if (itsArray[i][j] == itsArray[i][k])
 					{
-						itsArray[i][j] += itsArray[i][k];
+						score += itsArray[i][j] += itsArray[i][k];
 						itsArray[i][k] = 0;
 						arrayMoved = true;
 					}

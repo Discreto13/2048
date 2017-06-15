@@ -6,29 +6,30 @@ using namespace std;
 
 void display(const playground & PG)
 {
+	cout << "Score: " << PG.score << endl;
+
 	for (int i = 0; i < PG.itsSize; i++)
 	{
-		//cout << "\t";
 		for (int j = 0; j < 8 * PG.itsSize + 1; j++)
 		{
 			cout << "-";
 		}
 		cout << endl;
-		//cout << "\t";
+		
 		for (int j = 0; j < PG.itsSize; j++)
 		{
 			cout << "|\t";
 		}
 		cout << "|";
 		cout << endl;
-		//cout << "\t";
+		
 		for (int j = 0; j < PG.itsSize; j++)
 		{
 			cout << "|  " << PG.itsArray[i][j] << "\t";
 		}
 		cout << "|";
 		cout << endl;
-		//cout << "\t";
+		
 		for (int j = 0; j < PG.itsSize; j++)
 		{
 			cout << "|\t";
@@ -36,7 +37,7 @@ void display(const playground & PG)
 		cout << "|";
 		cout << endl;
 	}
-	//cout << "\t";
+	
 	for (int i = 0; i < 8 * PG.itsSize + 1; i++)
 	{
 		cout << "-";
